@@ -1,0 +1,77 @@
+# ------ Personal Phong Stuff ------#
+alias gst='git status -sb'
+alias ga='git add .'
+alias gp='git push'
+alias zshrc='vim ~/.zshrc'
+alias zshsource='source ~/.zshrc'
+alias ls='ls -Gp'
+alias glogp='git log --pretty=format:"%h %s" --graph'
+alias gm='git checkout master'
+alias please='push --force-with-lease'
+alias gco='git checkout'
+alias gr='git reset --hard'
+alias grbo='git rebase origin/master'
+pushinit () {
+    git add -u && git commit -m "$@" && git push --set-upstream origin `git branch --show-current`
+}
+pushit () {
+    git add -u && git commit -m "$@" && git push -u
+}
+amendit(){
+    git add -u && git commit --amend --no-edit && git please
+}
+alias sync-m='git fetch && git rebase origin/master'
+alias gbr="git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+
+git-delete(){
+    for k in $(git branch | sed /\*/d); do
+        if [ -n "$(git log -1 --before="$@" -s $k)" ]; then
+            git branch -d $k
+        fi
+    done
+}
+
+
+# ---- Work Alias' ------
+alias pullup='git pull && dev up'
+alias dup='dev up'
+alias master-server='git pull && dev up && dev server'
+alias dr='dev down && dev up'
+alias dev-kube='source /opt/dev/dev.sh && dev start-minikube'
+alias devminikube='dev up; minikube delete && minikube start --vm-driver=hyperkit --kubernetes-version=v1.11.6'
+alias devminikube-kd='dev up; minikube delete && minikube start --vm-driver=hyperkit --kubernetes-version=v1.10.6'
+alias dch='dev typecheck && dev style --include-branch-commits && dev test --include-branch-commits'
+alias dt='dev style && dev test'
+alias dta='dev style --all && dev test --all'
+alias rbt='rubocop && dev test'
+alias rubypush='rubocop && dev test && git push'
+alias gemb='gem build *.gemspec'
+proper-go-test(){
+    export GOCACHE=off;
+    export KUBECONTEXT=${KUBECONTEXT:=minikube};
+    export KUBECONFIG=/Users/phongpham/.kube/config;
+    export APP_ENV=test;
+    go test -run $1
+}
+gogo(){
+    go build $1 && go run $1
+}
+alias klocal='cd ~/src/github.com/Shopify/shopify-docker-images/kafka && ./standalone_cluster.sh'
+alias klog='docker logs -f kafka'
+rb(){
+    bundle exec ruby "$@"
+}
+kacl(){
+    ~/kafka/bin/kafka-acls.sh $1
+}
+alias dpr='dev open pr'
+alias coredb='mysql -u root -h 192.168.64.2'
+alias dev-partners='dev up && DISABLE_SHOPIFY_INTERNAL_API_INTERCEPTOR=1 dev server'
+alias lhm-m='bin/rails db:migrate'
+lhm-r(){
+    bin/rails lhm:revert VERSION=$1
+}
+alias killbr='git branch -D'
+if [ -e /Users/phongpham/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/phongpham/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+alias reset-testdb='bin/rails db:reset RAILS_ENV=test || bin/rails db:cpt_migrate lhm:run:all RAILS_ENV=test'
+# Doing this resets the sync between Core and Identity so that will need to be re-synced
