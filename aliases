@@ -8,7 +8,7 @@ alias ls='ls -Gp'
 alias glogp='git log --pretty=format:"%h %s" --graph'
 alias gm='git checkout master'
 alias please='push --force-with-lease'
-alias gco='git checkout'
+alias co='checkout'
 alias gr='git reset --hard'
 alias grbo='git rebase origin/master'
 pushinit () {
