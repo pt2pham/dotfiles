@@ -1,4 +1,7 @@
 # ------ Personal Phong Stuff ------#
+git config --global alias.co checkout
+git config --global alias.please "push --force-with-lease"
+
 alias gst='git status -sb'
 alias ga='git add .'
 alias gp='git push'
