@@ -78,3 +78,16 @@ alias killbr='git branch -D'
 if [ -e /Users/phongpham/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/phongpham/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 alias reset-testdb='bin/rails db:reset RAILS_ENV=test || bin/rails db:cpt_migrate lhm:run:all RAILS_ENV=test'
 # Doing this resets the sync between Core and Identity so that will need to be re-synced
+
+# Unit Aliases
+alias sc="systemctl"
+alias scf="systemctl list-units --failed"
+alias scst="systemctl | grep \"start\""
+alias scs="systemctl status $*"
+alias scr="systemctl restart $*"
+
+alias jc="journalctl"
+alias jct="journalctl -xfu $*"
+
+# SQL aliases
+alias sqlace="echo \"open 'mysql://\$MYSQL_USER:\$MYSQL_PASSWORD@\$SPIN_INSTANCE_FQDN:\$MYSQL_PORT' -a 'Sequel Ace'\""
