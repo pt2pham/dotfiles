@@ -36,6 +36,7 @@ git-delete(){
 
 
 # ---- Work Alias' ------
+alias spo="~/dotfiles/local/dev_scripts/spin-open"
 alias pullup='git pull && dev up'
 alias dup='dev up'
 alias master-server='git pull && dev up && dev server'
@@ -91,3 +92,5 @@ alias jct="journalctl -xfu $*"
 
 # SQL aliases
 alias sqlace="echo \"open 'mysql://\$MYSQL_USER:\$MYSQL_PASSWORD@\$SPIN_INSTANCE_FQDN:\$MYSQL_PORT' -a 'Sequel Ace'\""
+alias hedwig-up="dev hedwig worker 5 | grep -e 'Perf.*MaintenanceTasks::' -e 'Enqueued MaintenanceTasks::' -e '[MaintenanceTasks] Error' -e 'Job error:' -e '<output-from-your-task>'"
+alias taskup="dev hedwig scheduler"
