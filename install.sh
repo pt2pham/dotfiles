@@ -12,6 +12,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 # Install Shopify CLI
 # gem install shopify-cli
 
+chmod +x bin/install_cursor_extensions
+./bin/install_cursor_extensions
+
 # Link all files to the home directory
 for FILE in `ls ~/dotfiles` ; do
   ln -sf ~/dotfiles/$FILE ~/.$FILE
