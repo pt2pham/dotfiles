@@ -1,6 +1,7 @@
 # ------ Personal Phong Stuff ------#
 git config --global alias.co checkout
 git config --global alias.please "push --force-with-lease"
+git config --global submodule.recurse true
 
 alias gst='git status -sb'
 alias ga='git add .'
